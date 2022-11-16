@@ -11,8 +11,8 @@
 	<groupId>com.ericchih</groupId>
 	<artifactId>sprinboot-mall</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sprinboot-mall</name>
-	<description>sprinboot-mall</description>
+	<name>springboot-mall</name>
+	<description>springboot-mall</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
