@@ -3,7 +3,11 @@ package com.ericchih.sprinbootmall.dao;
 import com.ericchih.sprinbootmall.dto.ProductRequest;
 import com.ericchih.sprinbootmall.model.Product;
 
+import java.util.List;
+
 public interface ProductDao {
+
+    List<Product> getProducts();
 
     Product getProductById (Integer productId);
 
