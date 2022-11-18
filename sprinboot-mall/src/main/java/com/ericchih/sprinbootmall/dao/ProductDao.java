@@ -1,6 +1,4 @@
 package com.ericchih.sprinbootmall.dao;
-
-import com.ericchih.sprinbootmall.constant.ProductCategory;
 import com.ericchih.sprinbootmall.dto.ProductRequest;
 import com.ericchih.sprinbootmall.model.Product;
 
