@@ -1,6 +1,8 @@
 package com.ericchih.sprinbootmall.service.Impl;
 
+
 import com.ericchih.sprinbootmall.dao.ProductDao;
+import com.ericchih.sprinbootmall.dao.ProductQueryParams;
 import com.ericchih.sprinbootmall.dto.ProductRequest;
 import com.ericchih.sprinbootmall.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,8 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     @Override
-    public List<Product> getProducts() {
-        return productDao.getProducts();
+    public List<Product> getProducts(ProductQueryParams productQueryParams) {
+        return productDao.getProducts(productQueryParams);
     }
 
     @Autowired

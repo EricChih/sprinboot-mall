@@ -1,6 +1,8 @@
 package com.ericchih.sprinbootmall.dao.impl;
 
+import com.ericchih.sprinbootmall.constant.ProductCategory;
 import com.ericchih.sprinbootmall.dao.ProductDao;
+import com.ericchih.sprinbootmall.dao.ProductQueryParams;
 import com.ericchih.sprinbootmall.dto.ProductRequest;
 import com.ericchih.sprinbootmall.model.Product;
 import com.ericchih.sprinbootmall.rowmapper.ProductRowMapper;
@@ -24,11 +26,22 @@ public class ProductDaoImpl implements ProductDao {
 
 
     @Override
-    public List<Product> getProducts() {
+    public List<Product> getProducts(ProductQueryParams productQueryParams) {
         String sql="SELECT product_id,product_name, category, image_url , price, " +
-                "stock,description, created_date, last_modified_date FROM product";
+                "stock,description, created_date, last_modified_date FROM product WHERE 1=1";
 
             Map<String,Object> map=new HashMap<>();
+
+            if(productQueryParams.getCategory() != null){
+                sql=sql+" AND category=:category";
+                map.put("category",productQueryParams.getCategory());
+
+            }
+
+            if(productQueryParams.getSearch() != null){
+                sql=sql+" AND product_name LIKE search";
+                map.put("search" , "%" +productQueryParams.getSearch()+ "%" );
+            }
 
             List<Product> productList = namedParameterJdbcTemplate.query(sql,map,new ProductRowMapper());
 

@@ -1,5 +1,7 @@
 package com.ericchih.sprinbootmall.controller;
 
+import com.ericchih.sprinbootmall.constant.ProductCategory;
+import com.ericchih.sprinbootmall.dao.ProductQueryParams;
 import com.ericchih.sprinbootmall.dto.ProductRequest;
 import com.ericchih.sprinbootmall.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +20,20 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> getProduct(){
+    public ResponseEntity<List<Product>> getProducts(
+            @RequestParam(required = false) ProductCategory category,
+            @RequestParam(required = false) String search
+//            @RequestParam String orderBy,
+//            @RequestParam String sort
+    ){
+        ProductQueryParams productQueryParams=new ProductQueryParams();
+        productQueryParams.setCategory(category);
+        productQueryParams.setSearch(search);
 
-    List<Product> productList = productService.getProducts();
 
-    return ResponseEntity.status(HttpStatus.OK).body(productList);
+        List<Product> productList = productService.getProducts(productQueryParams);
+
+        return ResponseEntity.status(HttpStatus.OK).body(productList);
 
 
     }

@@ -1,5 +1,6 @@
 package com.ericchih.sprinbootmall.dao;
 
+import com.ericchih.sprinbootmall.constant.ProductCategory;
 import com.ericchih.sprinbootmall.dto.ProductRequest;
 import com.ericchih.sprinbootmall.model.Product;
 
@@ -7,7 +8,7 @@ import java.util.List;
 
 public interface ProductDao {
 
-    List<Product> getProducts();
+    List<Product> getProducts(ProductQueryParams productQueryParams);
 
     Product getProductById (Integer productId);
 
