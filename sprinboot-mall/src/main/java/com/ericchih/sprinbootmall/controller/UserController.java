@@ -1,5 +1,6 @@
 package com.ericchih.sprinbootmall.controller;
 
+import com.ericchih.sprinbootmall.dto.UserLoginRequest;
 import com.ericchih.sprinbootmall.dto.UserRegisterRequest;
 import com.ericchih.sprinbootmall.model.User;
 import com.ericchih.sprinbootmall.service.UserService;
@@ -25,6 +26,13 @@ public class UserController {
 
         User user = userService.getUserById(userId);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
+
+    }
+
+    @PostMapping("/users/login")
+    public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest){
+       User user = userService.login(userLoginRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(user);
 
     }
 
