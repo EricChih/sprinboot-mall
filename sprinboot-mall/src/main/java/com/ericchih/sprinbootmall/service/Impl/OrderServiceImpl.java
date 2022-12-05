@@ -4,6 +4,7 @@ import com.ericchih.sprinbootmall.dao.OrderDao;
 import com.ericchih.sprinbootmall.dao.ProductDao;
 import com.ericchih.sprinbootmall.dto.BuyItem;
 import com.ericchih.sprinbootmall.dto.CreateOrderRequest;
+import com.ericchih.sprinbootmall.model.Order;
 import com.ericchih.sprinbootmall.model.OrderItem;
 import com.ericchih.sprinbootmall.model.Product;
 import com.ericchih.sprinbootmall.service.OrderService;
@@ -21,6 +22,17 @@ public class OrderServiceImpl implements OrderService {
     private OrderDao orderDao;
     @Autowired
     private ProductDao productDao;
+
+    @Override
+    public Order getOrderById(Integer orderId) {
+        Order order=orderDao.getOrderById(orderId);
+
+        List<OrderItem> orderItemList = orderDao.getOrderItemByOrderId(orderId);
+
+        order.setOrderItemList(orderItemList);
+
+        return order;
+    }
 
     @Transactional
     @Override
